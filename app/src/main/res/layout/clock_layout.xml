@@ -31,14 +31,14 @@
         android:text="@string/space"
         android:textColor="@android:color/background_light" />
 
-    <TextView
-        android:id="@+id/greeting"
-        android:layout_width="318dp"
-        android:layout_height="164dp"
-        android:layout_below="@+id/date"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="@string/space"
-        android:textColor="@android:color/background_light"
-        android:textSize="30sp" />
+    <!--<TextView-->
+        <!--android:id="@+id/greeting"-->
+        <!--android:layout_width="318dp"-->
+        <!--android:layout_height="164dp"-->
+        <!--android:layout_below="@+id/date"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/space"-->
+        <!--android:textColor="@android:color/background_light"-->
+        <!--android:textSize="30sp" />-->
 </RelativeLayout>

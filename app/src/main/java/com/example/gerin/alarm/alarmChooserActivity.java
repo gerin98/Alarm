@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+//this activity is entered from an intent upon clicking the gridview button
 public class alarmChooserActivity extends AppCompatActivity {
 
     GridView grid;
@@ -71,23 +72,23 @@ public class alarmChooserActivity extends AppCompatActivity {
                         editor.apply();
                         break;
                     case 3:
-                        editor.putInt("tune", R.raw.down_stream);
+                        editor.putInt("tune", R.raw.silver_flame);
                         editor.apply();
                         break;
                     case 4:
-                        editor.putInt("tune", R.raw.down_stream);
+                        editor.putInt("tune", R.raw.river_fire);
                         editor.apply();
                         break;
                     case 5:
-                        editor.putInt("tune", R.raw.down_stream);
+                        editor.putInt("tune", R.raw.soaring);
                         editor.apply();
                         break;
                     case 6:
-                        editor.putInt("tune", R.raw.down_stream);
+                        editor.putInt("tune", R.raw.dreamer);
                         editor.apply();
                         break;
                     case 7:
-                        editor.putInt("tune", R.raw.down_stream);
+                        editor.putInt("tune", R.raw.fireflies_and_stardust);
                         editor.apply();
                         break;
                 }

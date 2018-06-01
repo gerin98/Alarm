@@ -3,6 +3,7 @@ package com.example.gerin.alarm;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,8 @@ public class SliderAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+
+        return 4;
     }
 
     @Override
@@ -33,26 +35,37 @@ public class SliderAdapter extends PagerAdapter {
 
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
-        int resId = -1;
-        View view = layoutInflater.inflate(R.layout.slide_layout, container, false);
+        int resId = 0;
+        //View view = layoutInflater.inflate(R.layout.slide_layout, container, false);
 
+        //additional layouts must be (RelativeLayout)
         switch (position){
             case 0:
                 resId = R.layout.slide_layout;
-                view = layoutInflater.inflate(R.layout.slide_layout, container, false);
+                //view = layoutInflater.inflate(R.layout.slide_layout, container, false);
                 break;
             case 1:
                 resId = R.layout.clock_layout;
-                view = layoutInflater.inflate(R.layout.clock_layout, container, false);
+                //view = layoutInflater.inflate(R.layout.clock_layout, container, false);
                 break;
+            case 2:
+                resId = R.layout.alarm_layout;
+                //view = layoutInflater.inflate(R.layout.alarm_layout, container, false);
+                break;
+            case 3:
+                resId = R.layout.slide_layout;
+                //view = layoutInflater.inflate(R.layout.slide_layout, container, false);
+                break;
+                default:
+                    resId = R.layout.slide_layout;
+                    break;
+
 
         }
-
-
-
+        View view = (View) layoutInflater.inflate(resId, null);
         //View view = layoutInflater.inflate(resId, container, false);
-
-        container.addView(view);
+        //container.addView(view);
+        container.addView(view, 0);
 
         return view;
     }
@@ -60,6 +73,6 @@ public class SliderAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
 
-        container.removeView((RelativeLayout) object);
+        ((ViewPager)container).removeView((RelativeLayout) object);
     }
 }

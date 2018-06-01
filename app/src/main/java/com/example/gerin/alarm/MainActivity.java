@@ -16,23 +16,21 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mSlideViewPager;
     private SliderAdapter sliderAdapter;
+
     //variable to sample alarm music
     AlarmSound sound = new AlarmSound(this);
-
-    //shared preferences
-//    SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
-//    final SharedPreferences.Editor editor = preferences.edit();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //set slide view pager
         mSlideViewPager = (ViewPager) findViewById(R.id.slidePager);
-
         sliderAdapter = new SliderAdapter(this);
         mSlideViewPager.setAdapter(sliderAdapter);
 
+        //set shared preferences
         SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("tune", R.raw.down_stream);
@@ -51,23 +49,28 @@ public class MainActivity extends AppCompatActivity {
                                 //some code
                                 TextView tDate = (TextView) findViewById(R.id.date);
                                 TextView tTime = (TextView) findViewById(R.id.time);
-                                TextView tGreeting = (TextView) findViewById(R.id.greeting);
+//                                TextView tGreeting = (TextView) findViewById(R.id.greeting);
 //                                LocalTime greetingtime1 = LocalTime.parse("12:00");
 //                                LocalTime greetingtime2 = LocalTime.parse("17:00");
                                 long date = System.currentTimeMillis();
 
                                 SimpleDateFormat sdfDate = new SimpleDateFormat("MMM dd yyyy ");
                                 SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
-                                SimpleDateFormat sdfGreetingTime = new SimpleDateFormat("HH:mm");
+//                                SimpleDateFormat sdfGreetingTime = new SimpleDateFormat("HH:mm");
 
                                 String dateString = sdfDate.format(date);
                                 String timeString = sdfTime.format(date);
-                                String greetingTimeString = sdfGreetingTime.format(date);
+//                                String greetingTimeString = sdfGreetingTime.format(date);
 
 //                                LocalTime currTime = LocalTime.parse(greetingTimeString);
 
-                                tDate.setText(dateString);
-                                tTime.setText(timeString);
+                                //this is in a try block since the reference returns null when on
+                                //different pages
+                                    try {
+                                        tDate.setText(dateString);
+                                        tTime.setText(timeString);
+                                    }catch (NullPointerException e){}
+
 //                                if(currTime.isBefore(greetingtime1))
 //                                    tGreeting.setText("Good Morning");
 //                                else if(currTime.isBefore(greetingtime2))
