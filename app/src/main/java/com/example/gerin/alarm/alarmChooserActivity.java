@@ -56,14 +56,51 @@ public class alarmChooserActivity extends AppCompatActivity {
 
                 SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
                 final SharedPreferences.Editor editor = preferences.edit();
-                if(position == 0) {
-                    editor.putInt("tune", R.raw.down_stream);
-                    editor.apply();
+
+                switch (position){
+                    case 0:
+                        editor.putInt("tune", R.raw.down_stream);
+                        editor.apply();
+                        break;
+                    case 1:
+                        editor.putInt("tune", R.raw.new_dawn);
+                        editor.apply();
+                        break;
+                    case 2:
+                        editor.putInt("tune", R.raw.bittersweet);
+                        editor.apply();
+                        break;
+                    case 3:
+                        editor.putInt("tune", R.raw.down_stream);
+                        editor.apply();
+                        break;
+                    case 4:
+                        editor.putInt("tune", R.raw.down_stream);
+                        editor.apply();
+                        break;
+                    case 5:
+                        editor.putInt("tune", R.raw.down_stream);
+                        editor.apply();
+                        break;
+                    case 6:
+                        editor.putInt("tune", R.raw.down_stream);
+                        editor.apply();
+                        break;
+                    case 7:
+                        editor.putInt("tune", R.raw.down_stream);
+                        editor.apply();
+                        break;
                 }
-                else if(position == 1){
-                    editor.putInt("tune", R.raw.new_dawn);
-                    editor.apply();
-                }
+
+//                if(position == 0) {
+//                    editor.putInt("tune", R.raw.down_stream);
+//                    editor.apply();
+//                }
+//                else if(position == 1){
+//                    editor.putInt("tune", R.raw.new_dawn);
+//                    editor.apply();
+//                }
+
                 sound.stopTune();
                 sound.chooseTrack(preferences.getInt("tune",0));
                 sound.playTune();
