@@ -5,8 +5,18 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@android:color/holo_green_light</item>
 
     </style>
+
+    <style name="TimePickerTheme" parent="@android:style/Widget.DeviceDefault.DatePicker">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@android:color/background_light</item>
+        <item name="colorPrimaryDark">@android:color/background_light</item>
+        <item name="colorAccent">@android:color/background_light</item>
+
+    </style>
+
+
 
 </resources>

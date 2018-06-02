@@ -21,7 +21,7 @@ public class SliderAdapter extends PagerAdapter {
     @Override
     public int getCount() {
 
-        return 4;
+        return 3;
     }
 
     @Override
@@ -52,13 +52,13 @@ public class SliderAdapter extends PagerAdapter {
                 resId = R.layout.alarm_layout;
                 //view = layoutInflater.inflate(R.layout.alarm_layout, container, false);
                 break;
-            case 3:
+//            case 3:
+//                resId = R.layout.slide_layout;
+//                //view = layoutInflater.inflate(R.layout.slide_layout, container, false);
+//                break;
+            default:
                 resId = R.layout.slide_layout;
-                //view = layoutInflater.inflate(R.layout.slide_layout, container, false);
                 break;
-                default:
-                    resId = R.layout.slide_layout;
-                    break;
 
 
         }
