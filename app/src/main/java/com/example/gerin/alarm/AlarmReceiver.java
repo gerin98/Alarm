@@ -11,7 +11,12 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Log.e("We are in the receiver","Yay");
 
+        //need to send the extra to the ringtonePlayingService
+        String getExtra = intent.getExtras().getString("extra");
+
         Intent serviceIntent = new Intent(context, ringtonePlayingService.class);
+
+        serviceIntent.putExtra("extra", getExtra);
 
         context.startService(serviceIntent);
     }

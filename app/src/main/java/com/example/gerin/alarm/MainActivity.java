@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     Calendar calendar;
     Button alarmOn;
+    Button alarmOff;
     PendingIntent pendingIntent;
     Intent alarmReceiverIntent;
     boolean alarmActive = false;
@@ -56,10 +57,9 @@ public class MainActivity extends AppCompatActivity {
         //create an intent to the AlarmReceiver class
         alarmReceiverIntent = new Intent(this.context, AlarmReceiver.class);
 
-        //initialize alarm ON button
+        //initialize alarm ON/OFF buttons
         alarmOn = (Button) findViewById(R.id.alarm_button);
-
-
+        alarmOff = (Button) findViewById(R.id.off_button);
 
         //set slide view pager
         mSlideViewPager = (ViewPager) findViewById(R.id.slidePager);
@@ -170,6 +170,10 @@ public class MainActivity extends AppCompatActivity {
                     calendar.set(Calendar.HOUR_OF_DAY, selectedHour);
                     calendar.set(Calendar.MINUTE, selectedMinute);
                     Log.e("inside onTimeSet", "calendar updated");
+
+                    //put in extra string to say that you stopped the alarm
+                    alarmReceiverIntent.putExtra("extra","alarm on");
+
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                     alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
                 }
@@ -199,6 +203,21 @@ public class MainActivity extends AppCompatActivity {
 
         //turn off the alarm
         //alarmManager.cancel(pendingIntent);
+
+    }
+
+    public void alarmToggleOff(View view){
+
+        Log.e("inside alarmToggleOff", "turning off the alarm");
+
+        alarmReceiverIntent.putExtra("extra","alarm off");
+
+        //cancel the alarm
+        alarmManager.cancel(pendingIntent);
+
+        //stop the ringtone
+        //sends a message to stop directly to the ringtonePlayingService
+        sendBroadcast(alarmReceiverIntent);
 
     }
 }
