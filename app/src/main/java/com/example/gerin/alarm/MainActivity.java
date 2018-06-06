@@ -6,12 +6,19 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -19,6 +26,8 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
+
+//ToDo illegal state exception: not allowed to start service intent when app is closed
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,17 +42,25 @@ public class MainActivity extends AppCompatActivity {
     TimePicker alarmTimePicker;
     Context context;
     Calendar calendar;
-    Button alarmOn;
+    FloatingActionButton alarmOn;
     Button alarmOff;
     PendingIntent pendingIntent;
     Intent alarmReceiverIntent;
     boolean alarmActive = false;
+    TextView alarm_textView;
+    Switch alarm_switch;
+    RelativeLayout alarm_relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.context = this;
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        myToolbar.setTitleTextColor(Color.WHITE);
+
 
         //initialize our alarm manager
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -58,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         alarmReceiverIntent = new Intent(this.context, AlarmReceiver.class);
 
         //initialize alarm ON/OFF buttons
-        alarmOn = (Button) findViewById(R.id.alarm_button);
+        alarmOn = (FloatingActionButton) findViewById(R.id.alarm_button);
         alarmOff = (Button) findViewById(R.id.off_button);
 
         //set slide view pager
@@ -151,7 +168,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void alarmToggle(View view){
+        alarm_textView = findViewById(R.id.alarm_textView);
+        alarm_switch = findViewById(R.id.alarm_switch);
 
+        alarm_relativeLayout =findViewById(R.id.alarm_relativeLayout);
         //setting calendar instance with hour and minute
 //        calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
 //        calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
@@ -160,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
         //final boolean[] alarmActive = {false};
-//        int hour = 0, minute = 0;
+        //final int [] set_time = new int[2];
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -170,6 +190,15 @@ public class MainActivity extends AppCompatActivity {
                     calendar.set(Calendar.HOUR_OF_DAY, selectedHour);
                     calendar.set(Calendar.MINUTE, selectedMinute);
                     Log.e("inside onTimeSet", "calendar updated");
+
+                    if(selectedHour > 12)
+                        alarm_textView.setText(String.valueOf(selectedHour - 12) + ":" + String.valueOf(selectedMinute) + " PM");
+                    else
+                        alarm_textView.setText(String.valueOf(selectedHour) + ":" + String.valueOf(selectedMinute) + " AM");
+
+                    alarm_relativeLayout.setVisibility(View.VISIBLE);
+                    alarm_switch.setVisibility(View.VISIBLE);
+                    //alarm_switch.setChecked(true);
 
                     //put in extra string to say that you stopped the alarm
                     alarmReceiverIntent.putExtra("extra","alarm on");
@@ -183,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
 
+//        System.out.println(String.valueOf(set_time[0]) + ":" + String.valueOf(set_time[1]));
 //        calendar.set(Calendar.HOUR_OF_DAY, hour);
 //        calendar.set(Calendar.MINUTE, minute);
         Log.e("Set the calendar", "pending intent comes next");
@@ -219,5 +249,28 @@ public class MainActivity extends AppCompatActivity {
         //sends a message to stop directly to the ringtonePlayingService
         sendBroadcast(alarmReceiverIntent);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.actionbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            //process your onClick here
+            Intent gotoAlarmChooserActivity = new Intent();
+            gotoAlarmChooserActivity.setClass(this, alarmChooserActivity.class);
+            startActivity(gotoAlarmChooserActivity);
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

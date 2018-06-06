@@ -1,26 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <!--<TimePicker-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/time_picker"-->
-
-        <!--&gt;-->
-    <!--</TimePicker>-->
-
-    <Button
-        android:id="@+id/alarm_button"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/alarmset_textView"
+        android:layout_width="167dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="46dp"
+        android:text="Alarms Set"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/alarm_relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="158dp"
-        android:onClick="alarmToggle"
-        android:text="set alarm" />
+        android:layout_marginTop="95dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:visibility="invisible"
+        android:background="@drawable/background_box">
+
+        <TextView
+            android:id="@+id/alarm_textView"
+            android:layout_width="172dp"
+            android:layout_height="31dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30dp"
+            android:text=" "
+            android:textAlignment="viewStart"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <Switch
+            android:id="@+id/alarm_switch"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="70dp"
+            android:checked="true"
+            android:visibility="invisible"
+            tools:checked="true" />
+
+    </RelativeLayout>
+
+
+
 
     <Button
         android:id="@+id/off_button"
@@ -28,8 +65,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="98dp"
+        android:layout_marginBottom="17dp"
         android:onClick="alarmToggleOff"
         android:text="Turn off alarm" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/alarm_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="38dp"
+        android:layout_marginEnd="37dp"
+        android:clickable="true"
+        android:onClick="alarmToggle"
+        android:src="@drawable/ic_add_black" />
+
+
+
 
 </RelativeLayout>

@@ -1,20 +1,79 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@android:color/holo_green_light</item>
+        <item name="colorAccent">@android:color/holo_red_light</item>
 
     </style>
 
-    <style name="TimePickerTheme" parent="@android:style/Widget.DeviceDefault.DatePicker">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@android:color/background_light</item>
-        <item name="colorPrimaryDark">@android:color/background_light</item>
-        <item name="colorAccent">@android:color/background_light</item>
+    <style name="CustomPopupTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">-4dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
 
+
+    <!--<style name="CustomAppBarTheme" parent="Theme.AppCompat.Light">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@android:color/holo_red_light</item>-->
+        <!--<item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>-->
+    <!--</style>-->
+
+    <!--<style name="MyTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">-->
+        <!--<item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>-->
+    <!--</style>-->
+
+    <!--<style name="MyTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">-->
+        <!--<item name="android:textColor">@color/red</item>-->
+    <!--</style>-->
+
+    <style name="myTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="android:background">@color/medium_sea_green</item>-->
+        <item name="android:background">@color/sea_green</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@android:color/holo_red_light</item>
+        <item name="android:actionBarStyle">@style/myTheme.ActionBar</item>
+        <item name="actionBarStyle">@style/myTheme.ActionBar</item>
+        <item name="android:actionMenuTextColor">@color/cadet_blue</item>
+    </style>
+
+    <style name="myTheme.ActionBar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@color/sea_green</item>
+        <item name="android:titleTextStyle">@style/myTheme.ActionBar.Text</item>
+    </style>
+
+    <style name="myTheme.ActionBar.Text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <!--_________________________________________________________________________________________-->
+
+    <style name="ActionBar" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="actionMenuTextColor">@color/sea_green</item>
+    </style>
+
+    <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="titleTextStyle">@style/ActionBarTitleText</item>
+        <item name="subtitleTextStyle">@style/ActionBarSubTitleText</item>
+    </style>
+
+    <style name="ActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ActionBarSubTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 

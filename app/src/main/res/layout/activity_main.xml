@@ -9,41 +9,53 @@
     android:background="@drawable/main_background"
     tools:context=".MainActivity">
 
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="37dp"
-        android:onClick="playSound"
-        android:text="alarm1" />
+        android:layout_alignParentTop="true"
+        android:elevation="4dp"
+        app:theme="@style/myTheme"
+        app:popupTheme="@style/CustomPopupTheme" />
+
+    <!--<Button-->
+        <!--android:id="@+id/button2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:layout_marginStart="37dp"-->
+        <!--android:onClick="playSound"-->
+        <!--android:text="alarm1" />-->
 
     <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/slidePager"
         android:layout_width="match_parent"
-        android:layout_height="429dp" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="511dp"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/button2"
-        android:layout_marginStart="137dp"
-        android:onClick="playSound2"
-        android:text="alarm2" />
+        android:layout_below="@+id/my_toolbar" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/button"
-        android:layout_marginEnd="22dp"
-        android:onClick="enter"
-        android:text="gridActivity" />
+
+    <!--<Button-->
+        <!--android:id="@+id/button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignTop="@+id/button2"-->
+        <!--android:layout_marginStart="137dp"-->
+        <!--android:onClick="playSound2"-->
+        <!--android:text="alarm2" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/button3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignTop="@+id/button"-->
+        <!--android:layout_marginEnd="22dp"-->
+        <!--android:onClick="enter"-->
+        <!--android:text="gridActivity" />-->
 
 </RelativeLayout>
