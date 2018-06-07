@@ -22,6 +22,19 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/ampm"
+        android:layout_width="77dp"
+        android:layout_height="57dp"
+        android:layout_alignTop="@+id/time"
+        android:layout_marginTop="17dp"
+        android:layout_marginStart="-46dp"
+        android:layout_toEndOf="@+id/time"
+        android:gravity="left"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <TextView
         android:id="@+id/date"
         android:layout_width="131dp"
         android:layout_height="wrap_content"
@@ -30,6 +43,20 @@
         android:gravity="center"
         android:text="@string/space"
         android:textColor="@android:color/background_light" />
+
+    <TextView
+        android:id="@+id/greeting"
+        android:layout_width="253dp"
+        android:layout_height="190dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="136dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+
 
     <!--<TextView-->
         <!--android:id="@+id/greeting"-->

@@ -103,18 +103,26 @@ public class MainActivity extends AppCompatActivity {
                                 //some code
                                 TextView tDate = (TextView) findViewById(R.id.date);
                                 TextView tTime = (TextView) findViewById(R.id.time);
-//                                TextView tGreeting = (TextView) findViewById(R.id.greeting);
+                                TextView tGreeting = (TextView) findViewById(R.id.greeting);
+                                TextView tampm = (TextView) findViewById(R.id.ampm);
 //                                LocalTime greetingtime1 = LocalTime.parse("12:00");
 //                                LocalTime greetingtime2 = LocalTime.parse("17:00");
                                 long date = System.currentTimeMillis();
 
+
+                                ////////////
+//                                Calendar cal = Calendar.getInstance();
+//                                cal.setTime();
+//                                int hours = cal.get(Calendar.HOUR_OF_DAY);
+                                ////////////
+
                                 SimpleDateFormat sdfDate = new SimpleDateFormat("MMM dd yyyy ");
                                 SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
-//                                SimpleDateFormat sdfGreetingTime = new SimpleDateFormat("HH:mm");
+                                SimpleDateFormat sdfGreetingTime = new SimpleDateFormat("HH");
 
                                 String dateString = sdfDate.format(date);
                                 String timeString = sdfTime.format(date);
-//                                String greetingTimeString = sdfGreetingTime.format(date);
+                                String greetingTimeString = sdfGreetingTime.format(date);
 
 //                                LocalTime currTime = LocalTime.parse(greetingTimeString);
 
@@ -125,13 +133,18 @@ public class MainActivity extends AppCompatActivity {
                                         tTime.setText(timeString);
                                     }catch (NullPointerException e){}
 
-//                                if(currTime.isBefore(greetingtime1))
-//                                    tGreeting.setText("Good Morning");
-//                                else if(currTime.isBefore(greetingtime2))
-//                                    tGreeting.setText("Good Afternoon");
-//                                else
-//                                    tGreeting.setText("Good Evening");
-
+                                if(Integer.valueOf(greetingTimeString) < 12) {
+                                    tGreeting.setText("Good Morning");
+                                    tampm.setText("AM");
+                                }
+                                else if(Integer.valueOf(greetingTimeString) < 17) {
+                                    tGreeting.setText("Good Afternoon");
+                                    tampm.setText("PM");
+                                }
+                                else {
+                                    tGreeting.setText("Good Evening");
+                                    tampm.setText("PM");
+                                }
                             }
                         });
                     }
