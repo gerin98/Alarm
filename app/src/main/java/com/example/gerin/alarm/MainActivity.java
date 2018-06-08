@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     AlarmSound sound = new AlarmSound(this);
 
     //Alarm variables
+    long snoozeTime;
     AlarmManager alarmManager;
     TimePicker alarmTimePicker;
     Context context;
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         myToolbar.setTitleTextColor(Color.WHITE);
-
 
         //initialize our alarm manager
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -204,14 +204,19 @@ public class MainActivity extends AppCompatActivity {
                     calendar.set(Calendar.MINUTE, selectedMinute);
                     Log.e("inside onTimeSet", "calendar updated");
 
-                    if(selectedHour > 12)
-                        alarm_textView.setText(String.valueOf(selectedHour - 12) + ":" + String.valueOf(selectedMinute) + " PM");
-                    else
-                        alarm_textView.setText(String.valueOf(selectedHour) + ":" + String.valueOf(selectedMinute) + " AM");
-
+                    if(selectedHour > 12) {
+                        String alarm_text = String.valueOf(selectedHour - 12) + ":" + String.format("%02d", selectedMinute) + " PM";
+                        alarm_textView.setText(alarm_text);
+                    }
+                    else {
+                        String alarm_text = String.valueOf(selectedHour) + ":" + String.format("%02d", selectedMinute) + " AM";
+                        alarm_textView.setText(alarm_text);
+                    }
                     alarm_relativeLayout.setVisibility(View.VISIBLE);
                     alarm_switch.setVisibility(View.VISIBLE);
                     //alarm_switch.setChecked(true);
+
+                    snoozeTime = calendar.getTimeInMillis();
 
                     //put in extra string to say that you stopped the alarm
                     alarmReceiverIntent.putExtra("extra","alarm on");
@@ -264,6 +269,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void alarmSnooze(View view){
+
+        Log.e("inside alarmSnooze", "snoozing the alarm");
+
+        alarmReceiverIntent.putExtra("extra","alarm off");
+
+        //cancel the alarm
+        alarmManager.cancel(pendingIntent);
+
+        //stop the ringtone
+        //sends a message to stop directly to the ringtonePlayingService
+        sendBroadcast(alarmReceiverIntent);
+
+
+        //put in extra string to say that you stopped the alarm
+        alarmReceiverIntent.putExtra("extra","alarm on");
+
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        //one minute snooze time
+        snoozeTime += 60000;
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, snoozeTime, pendingIntent);
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -287,3 +318,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+//public void alarmSnooze(View view){
+//
+//}

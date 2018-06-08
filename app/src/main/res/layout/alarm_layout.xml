@@ -82,7 +82,14 @@
         android:onClick="alarmToggle"
         android:src="@drawable/ic_add_black" />
 
-
+    <Button
+        android:id="@+id/snooze_button"
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/alarm_button"
+        android:layout_alignStart="@+id/off_button"
+        android:onClick="alarmSnooze"
+        android:text="snooze" />
 
 
 </RelativeLayout>
