@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     alarm_relativeLayout.setVisibility(View.VISIBLE);
                     alarm_switch.setVisibility(View.VISIBLE);
-                    //alarm_switch.setChecked(true);
+                    alarm_switch.setChecked(true);
 
                     snoozeTime = calendar.getTimeInMillis();
 
@@ -280,6 +280,8 @@ public class MainActivity extends AppCompatActivity {
         //stop the ringtone
         //sends a message to stop directly to the ringtonePlayingService
         sendBroadcast(alarmReceiverIntent);
+
+        alarm_switch.setChecked(false);
 
     }
 

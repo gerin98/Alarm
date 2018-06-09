@@ -38,22 +38,32 @@ public class SettingsActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
+        //snooze length text view
+        snooze_length_settings_tv = (TextView) findViewById(R.id.snooze_length_settings_tv);
+
         //shared preferences
         SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
         int prefValue = preferences.getInt("snooze", 0);
         final SharedPreferences.Editor editor = preferences.edit();
+        String settext2;
         if(prefValue == 0){
             editor.putInt("snooze", 1);
             editor.apply();
+            settext2 = "1 minute";
+            snooze_length_settings_tv.setText(settext2);
         }
         else{
             editor.putInt("snooze", prefValue);
             editor.apply();
+            if(prefValue == 1)
+                settext2 = String.valueOf(prefValue) + " minute";
+            else
+                settext2 = String.valueOf(prefValue) + " minutes";
+            snooze_length_settings_tv.setText(settext2);
             //keep previous preference
         }
 
-        //snooze length text view
-        snooze_length_settings_tv = (TextView) findViewById(R.id.snooze_length_settings_tv);
+
 
         //snooze settings button
         snooze_length = (Button) findViewById(R.id.snooze_length_settings_button);
