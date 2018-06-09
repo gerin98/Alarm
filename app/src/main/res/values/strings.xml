@@ -6,4 +6,6 @@
     <string name="alarm_tune">Alarm Tune</string>
     <string name="space" />
     <string name="alarm_chooser_toolbar_title">Alarm\u0020Sounds</string>
+    <string name="settings_toolbar_title">Settings</string>
+
 </resources>

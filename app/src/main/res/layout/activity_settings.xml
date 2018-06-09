@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/settings_tolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        app:popupTheme="@style/CustomPopupTheme"
+        app:theme="@style/myTheme">
+    </android.support.v7.widget.Toolbar>
+
+
+    <Button
+        android:id="@+id/snooze_length_settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="163dp"
+        android:text="Snooze Length" />
+
+    <TextView
+        android:id="@+id/snooze_length_settings_tv"
+        android:layout_width="121dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/snooze_length_settings_button"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="219dp"
+        android:text="1 minute" />
+
+</RelativeLayout>

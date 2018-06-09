@@ -90,9 +90,19 @@ public class MainActivity extends AppCompatActivity {
 
         //set shared preferences
         SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
+        int prefValue = preferences.getInt("tune", 0);
         final SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("tune", R.raw.down_stream);
-        editor.apply();
+        if(prefValue == 0){
+            editor.putInt("tune", R.raw.down_stream);
+            editor.apply();
+        }
+        else{
+            editor.putInt("tune", prefValue);
+            editor.apply();
+            //keep previous preference
+        }
+
+
 
         //new thread to update clock
         Thread t = new Thread(){
@@ -286,14 +296,33 @@ public class MainActivity extends AppCompatActivity {
         //sends a message to stop directly to the ringtonePlayingService
         sendBroadcast(alarmReceiverIntent);
 
-
         //put in extra string to say that you stopped the alarm
         alarmReceiverIntent.putExtra("extra","alarm on");
 
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        //one minute snooze time
-        snoozeTime += 60000;
+        //get snooze length
+        SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
+        int prefValue = preferences.getInt("snooze", 0);
+        final SharedPreferences.Editor editor = preferences.edit();
+        if(prefValue == 0){
+            editor.putInt("snooze", 1);
+            editor.apply();
+
+            //one minute snooze time
+            snoozeTime += 60000;
+        }
+        else{
+            editor.putInt("snooze", prefValue);
+            editor.apply();
+
+            //one minute snooze time
+            snoozeTime += prefValue*60*1000;    //minutes*60seconds*1000milliseconds
+        }
+
+
+
+
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, snoozeTime, pendingIntent);
 
@@ -313,7 +342,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_settings) {
             //process your onClick here
-
+            Intent gotoSettingsActivity = new Intent();
+            gotoSettingsActivity.setClass(this, SettingsActivity.class);
+            startActivity(gotoSettingsActivity);
 
         }
         else if(id == R.id.alarm_tune_settings){
