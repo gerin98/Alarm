@@ -52,15 +52,19 @@ public class MainActivity extends AppCompatActivity {
     Switch alarm_switch;
     RelativeLayout alarm_relativeLayout;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.context = this;
 
+        //toolbars initialization
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         myToolbar.setTitleTextColor(Color.WHITE);
+
 
         //initialize our alarm manager
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -309,10 +313,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_settings) {
             //process your onClick here
+
+
+        }
+        else if(id == R.id.alarm_tune_settings){
             Intent gotoAlarmChooserActivity = new Intent();
             gotoAlarmChooserActivity.setClass(this, alarmChooserActivity.class);
             startActivity(gotoAlarmChooserActivity);
-
         }
 
         return super.onOptionsItemSelected(item);

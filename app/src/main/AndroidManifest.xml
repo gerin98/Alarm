@@ -20,7 +20,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".alarmChooserActivity"></activity>
+        <activity android:name=".alarmChooserActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
 
         <receiver android:name=".AlarmReceiver" />
 

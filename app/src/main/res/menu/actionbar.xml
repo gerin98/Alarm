@@ -9,6 +9,11 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/alarm_tune_settings"
+        android:title="@string/alarm_tune"
+        app:showAsAction="never" />
+
 
 
 </menu>

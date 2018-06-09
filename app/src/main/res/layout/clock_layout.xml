@@ -52,7 +52,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="136dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text=""
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 

@@ -3,8 +3,11 @@ package com.example.gerin.alarm;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -39,10 +42,26 @@ public class alarmChooserActivity extends AppCompatActivity {
     AlarmSound sound = new AlarmSound(this);
 
 
+    //toolbars
+    Toolbar alarm_chooser_toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_chooser);
+
+        alarm_chooser_toolbar = (Toolbar) findViewById(R.id.alarm_chooser_toolbar);
+        alarm_chooser_toolbar.setTitle("");
+        setSupportActionBar(alarm_chooser_toolbar);
+        alarm_chooser_toolbar.setTitle(R.string.alarm_chooser_toolbar_title);
+        alarm_chooser_toolbar.setTitleTextColor(Color.WHITE);
+
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
+
 
         //Intent callee = getIntent();
         GridAdapter adapter = new GridAdapter(alarmChooserActivity.this, web, imageId);

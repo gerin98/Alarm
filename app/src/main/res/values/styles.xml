@@ -53,7 +53,27 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <!--_________________________________________________________________________________________-->
+    <style name="myTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="android:background">@color/medium_sea_green</item>-->
+        <item name="android:background">@color/sea_green</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@android:color/holo_red_light</item>
+        <item name="android:actionBarStyle">@style/myTheme.ActionBar2</item>
+        <item name="actionBarStyle">@style/myTheme.ActionBar2</item>
+        <item name="android:actionMenuTextColor">@color/cadet_blue</item>
+    </style>
 
+    <style name="myTheme.ActionBar2" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@color/sea_green</item>
+        <item name="android:titleTextStyle">@style/myTheme.ActionBar.Text</item>
+    </style>
+
+    <style name="myTheme.ActionBar.Text2" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+    </style>
     <!--_________________________________________________________________________________________-->
 
     <style name="ActionBar" parent="@style/Theme.AppCompat.Light">

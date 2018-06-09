@@ -2,16 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
 
-    <GridView
-        android:numColumns="2"
-        android:gravity="center_horizontal"
-        android:columnWidth="100dp"
-        android:stretchMode="columnWidth"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/grid"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="681dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/alarm_chooser_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:elevation="4dp"
+            app:popupTheme="@style/CustomPopupTheme"
+            app:theme="@style/myTheme" />
+
+
+        <GridView
+            android:id="@+id/grid"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="55dp"
+            android:columnWidth="100dp"
+            android:gravity="center_horizontal"
+            android:numColumns="2"
+            android:stretchMode="columnWidth" />
+
+    </RelativeLayout>
 
 </FrameLayout>
