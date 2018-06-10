@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -102,6 +103,37 @@ public class MainActivity extends AppCompatActivity {
             //keep previous preference
         }
 
+        alarm_switch = findViewById(R.id.alarm_switch);
+        if(alarm_switch != null){
+            alarm_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(!isChecked){
+                        alarmReceiverIntent.putExtra("extra","alarm off");
+
+                        //cancel the alarm
+                        alarmManager.cancel(pendingIntent);
+
+                        //stop the ringtone
+                        //sends a message to stop directly to the ringtonePlayingService
+                        sendBroadcast(alarmReceiverIntent);
+                    }
+                }
+            });
+        }
+//        alarm_switch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+//        alarm_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+////                if(!isChecked)
+////                    alarmToggleOff(findViewById(android.R.id.content));
+//            }
+//        });
 
 
         //new thread to update clock
@@ -220,6 +252,10 @@ public class MainActivity extends AppCompatActivity {
 
                     if(selectedHour > 12) {
                         String alarm_text = String.valueOf(selectedHour - 12) + ":" + String.format("%02d", selectedMinute) + " PM";
+                        alarm_textView.setText(alarm_text);
+                    }
+                    else if(selectedHour == 0 ){
+                        String alarm_text = String.valueOf(selectedHour + 12) + ":" + String.format("%02d", selectedMinute) + " AM";
                         alarm_textView.setText(alarm_text);
                     }
                     else {
