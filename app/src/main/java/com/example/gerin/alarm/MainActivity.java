@@ -399,12 +399,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         for(int i = 0; i < mdots.length; i++){
-//            mdots[i] = new TextView(this);
-//            mdots[i].setText(Html.fromHtml("&#8226;"));
-//            mdots[i].setTextSize(35);
             mdots[i].setTextColor(getResources().getColor(R.color.white_smoke));
-//
-//            mDotLayout.addView(mdots[i]);
         }
 
         if(mdots.length > 0){
