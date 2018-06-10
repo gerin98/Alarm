@@ -14,6 +14,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class ringtonePlayingService extends Service {
@@ -21,7 +22,7 @@ public class ringtonePlayingService extends Service {
     MediaPlayer media_song;
     int startID;
     boolean isRunning;
-
+        
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -92,6 +93,7 @@ public class ringtonePlayingService extends Service {
         SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = preferences.edit();
 
+
         //if music IS NOT playing and user presses alarm ON, start playing
         if(!this.isRunning && startId == 1){
 
@@ -100,6 +102,7 @@ public class ringtonePlayingService extends Service {
 
             this.isRunning = true;
             this.startID = 0;
+
         }
         //if music IS playing and user presses alarm OFF, stop playing
         else if(this.isRunning && startId == 0){

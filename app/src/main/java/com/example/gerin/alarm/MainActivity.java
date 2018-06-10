@@ -12,12 +12,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -53,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     Switch alarm_switch;
     RelativeLayout alarm_relativeLayout;
 
+    //ui
+    private  TextView[] mdots;
+    private LinearLayout mDotLayout;
 
 
     @Override
@@ -121,19 +126,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-//        alarm_switch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-//        alarm_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-////                if(!isChecked)
-////                    alarmToggleOff(findViewById(android.R.id.content));
-//            }
-//        });
+
+        //ui: dots layout
+        mDotLayout = (LinearLayout) findViewById(R.id.mDotLayout);
+        mdots = new TextView[3];
+        for(int i = 0; i < mdots.length; i++){
+            mdots[i] = new TextView(this);
+            mdots[i].setText(Html.fromHtml("&#8226;"));
+            mdots[i].setTextSize(35);
+            mdots[i].setTextColor(getResources().getColor(R.color.white_smoke));
+
+            mDotLayout.addView(mdots[i]);
+        }
+        addDotsIndicator(1);
+        mSlideViewPager.addOnPageChangeListener(viewListener);
 
 
         //new thread to update clock
@@ -357,11 +363,6 @@ public class MainActivity extends AppCompatActivity {
             //one minute snooze time
             snoozeTime += prefValue*60*1000;    //minutes*60seconds*1000milliseconds
         }
-
-
-
-
-
         alarmManager.set(AlarmManager.RTC_WAKEUP, snoozeTime, pendingIntent);
 
     }
@@ -393,6 +394,40 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void addDotsIndicator(int position){
+
+
+        for(int i = 0; i < mdots.length; i++){
+//            mdots[i] = new TextView(this);
+//            mdots[i].setText(Html.fromHtml("&#8226;"));
+//            mdots[i].setTextSize(35);
+            mdots[i].setTextColor(getResources().getColor(R.color.white_smoke));
+//
+//            mDotLayout.addView(mdots[i]);
+        }
+
+        if(mdots.length > 0){
+            mdots[position].setTextColor(getResources().getColor(R.color.light_sea_green));
+        }
+    }
+
+    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            addDotsIndicator(position);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
 }
 
 //public void alarmSnooze(View view){

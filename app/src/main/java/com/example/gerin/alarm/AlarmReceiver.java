@@ -20,6 +20,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         //context.startForegroundService(serviceIntent);
         context.startService(serviceIntent);
+
+
     }
 
 
