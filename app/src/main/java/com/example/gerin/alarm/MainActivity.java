@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import android.widget.TimePicker;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 //ToDo illegal state exception: not allowed to start service intent when app is closed
 
@@ -57,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
     //ui
     private  TextView[] mdots;
     private LinearLayout mDotLayout;
+
+    //countdown timer
+    private static final long START_TIME_IN_MILLIS = 60000; //1 minute
+    private TextView mTextViewCountDown;
+    private Button mButtonStartPause;
+    private Button mButtonReset;
+    private CountDownTimer mCountDownTimer;
+    private boolean mTimerRunning;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
 
     @Override
@@ -203,6 +214,31 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         t.start();
+
+
+        //countdown timer
+        mTextViewCountDown = (TextView) findViewById(R.id.text_view_countdown);
+        mButtonStartPause = (Button) findViewById(R.id.button_start_pause);
+        mButtonReset = (Button) findViewById(R.id.button_reset);
+
+//        mButtonStartPause.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(mTimerRunning)
+//                    pauseTimer();
+//                else
+//                    startTimer();
+//            }
+//        });
+//
+//        mButtonReset.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                resetTimer();
+//            }
+//        });
+
+       // updateCountDownText();
 
     }
 
@@ -422,4 +458,72 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+    public void startTimer(final View view){
+        mButtonStartPause = (Button) findViewById(R.id.button_start_pause);
+        mButtonReset = (Button) findViewById(R.id.button_reset);
+
+        final View view1 = view;
+        try {
+
+            mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+                @Override
+                public void onTick(long l) {
+                    mTimeLeftInMillis = l;
+                    updateCountDownText(view1);
+                }
+
+                @Override
+                public void onFinish() {
+                    mTimerRunning = false;
+                    mButtonStartPause.setText("Start");
+                    mButtonStartPause.setVisibility(View.INVISIBLE);
+                    mButtonReset.setVisibility(View.VISIBLE);
+                }
+            }.start();
+        }catch (NullPointerException e){}
+
+        mTimerRunning = true;
+        mButtonStartPause.setText("Pause");
+        mButtonReset.setVisibility(View.INVISIBLE);
+    }
+
+    public void pauseTimer(View view){
+        mButtonStartPause = (Button) findViewById(R.id.button_start_pause);
+        mButtonReset = (Button) findViewById(R.id.button_reset);
+
+        mCountDownTimer.cancel();
+        mTimerRunning = false;
+        mButtonStartPause.setText("Start");
+        mButtonReset.setVisibility(View.VISIBLE);
+    }
+
+    public void resetTimer(View view){
+        mButtonStartPause = (Button) findViewById(R.id.button_start_pause);
+        mButtonReset = (Button) findViewById(R.id.button_reset);
+
+        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        updateCountDownText(view);
+        mButtonReset.setVisibility(View.INVISIBLE);
+        mButtonStartPause.setVisibility(View.VISIBLE);
+    }
+
+    public void updateCountDownText(View view){
+        mTextViewCountDown = (TextView) findViewById(R.id.text_view_countdown);
+
+        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+try {
+    mTextViewCountDown.setText(timeLeftFormatted);
+}catch (NullPointerException e) {}
+    }
+
+    public void choose_start_pause(View view){
+        if(mTimerRunning)
+            pauseTimer(view);
+        else
+            startTimer(view);
+    }
 }
