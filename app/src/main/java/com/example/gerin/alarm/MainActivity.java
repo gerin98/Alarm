@@ -27,7 +27,6 @@ import android.widget.TimePicker;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.Calendar;
 
 //ToDo illegal state exception: not allowed to start service intent when app is closed
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             //keep previous preference
         }
 
-        alarm_switch = findViewById(R.id.alarm_switch);
+        alarm_switch = (Switch) findViewById(R.id.alarm_switch);
         if(alarm_switch != null){
             alarm_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -233,10 +232,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void alarmToggle(View view){
-        alarm_textView = findViewById(R.id.alarm_textView);
-        alarm_switch = findViewById(R.id.alarm_switch);
+        alarm_textView = (TextView) findViewById(R.id.alarm_textView);
+        alarm_switch = (Switch) findViewById(R.id.alarm_switch);
 
-        alarm_relativeLayout =findViewById(R.id.alarm_relativeLayout);
+        alarm_relativeLayout = (RelativeLayout) findViewById(R.id.alarm_relativeLayout);
         //setting calendar instance with hour and minute
 //        calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
 //        calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
@@ -424,7 +423,3 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 }
-
-//public void alarmSnooze(View view){
-//
-//}
