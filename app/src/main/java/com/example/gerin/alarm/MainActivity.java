@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    MediaPlayer timer_song;
 
 
     @Override
@@ -226,6 +228,8 @@ public class MainActivity extends AppCompatActivity {
 //            mButtonStartPause2.setVisibility(View.INVISIBLE);
 //        }catch (NullPointerException e) {}
         mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
+
+        timer_song = MediaPlayer.create(this, preferences.getInt("tune",0));
 
     }
 
@@ -446,7 +450,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    //TODO: buttons reset when you go to third page since the references are null
+    //TODO: change alarm tune while timer is running
     public void startTimer(final View view){
         mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
         mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);
@@ -467,7 +471,9 @@ public class MainActivity extends AppCompatActivity {
                     mTimerRunning = false;
                     //mButtonStartPause.setText("Start");
                     mButtonStartPause.setVisibility(View.INVISIBLE);
+                    mButtonStartPause2.setVisibility(View.INVISIBLE);
                     mButtonReset.setVisibility(View.VISIBLE);
+                    timer_song.start();
                 }
             }.start();
         }catch (NullPointerException e){}
@@ -495,6 +501,12 @@ public class MainActivity extends AppCompatActivity {
         mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
         mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+        if(timer_song != null) {
+            timer_song.stop();
+            timer_song.reset();
+            timer_song = null;
+        }
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText(view);
         mButtonReset.setVisibility(View.INVISIBLE);
