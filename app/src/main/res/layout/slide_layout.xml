@@ -14,27 +14,61 @@
         android:textColor="#FFF"
         android:textSize="60sp" />
 
-    <Button
+    <!--<Button-->
+        <!--android:id="@+id/button_start_pause"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/text_view_countdown"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:onClick="choose_start_pause"-->
+        <!--android:text="start" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/button_reset"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/text_view_countdown"-->
+        <!--android:layout_marginStart="11dp"-->
+        <!--android:layout_toEndOf="@+id/button_start_pause"-->
+        <!--android:text="reset"-->
+        <!--android:visibility="invisible"-->
+        <!--android:layout_marginLeft="11dp"-->
+        <!--android:onClick="resetTimer"-->
+        <!--android:layout_toRightOf="@+id/button_start_pause" />-->
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/button_start_pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text_view_countdown"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="86dp"
+        android:clickable="true"
         android:onClick="choose_start_pause"
-        android:text="start" />
+        app:srcCompat="@android:drawable/ic_media_play" />
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/button_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text_view_countdown"
-        android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/button_start_pause"
-        android:text="reset"
-        android:visibility="invisible"
-        android:layout_marginLeft="11dp"
+        android:layout_alignTop="@+id/button_start_pause"
+        android:layout_toEndOf="@+id/text_view_countdown"
+        android:clickable="true"
         android:onClick="resetTimer"
-        android:layout_toRightOf="@+id/button_start_pause" />
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_menu_rotate"
+        android:layout_toRightOf="@+id/text_view_countdown" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_start_pause2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button_start_pause"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:onClick="pauseTimer"
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_media_pause" />
 
 
 </RelativeLayout>

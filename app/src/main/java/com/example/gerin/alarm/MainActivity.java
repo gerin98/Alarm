@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
     //countdown timer
     private static final long START_TIME_IN_MILLIS = 60000; //1 minute
     private TextView mTextViewCountDown;
-    private Button mButtonStartPause;
-    private Button mButtonReset;
+    private FloatingActionButton mButtonStartPause;
+    private FloatingActionButton mButtonReset;
+    private FloatingActionButton mButtonStartPause2;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         //set slide view pager
         mSlideViewPager = (ViewPager) findViewById(R.id.slidePager);
+        mSlideViewPager.setOffscreenPageLimit(2);
         sliderAdapter = new SliderAdapter(this);
         mSlideViewPager.setAdapter(sliderAdapter);
         mSlideViewPager.setCurrentItem(sliderAdapter.getCount()-2);
@@ -218,27 +220,12 @@ public class MainActivity extends AppCompatActivity {
 
         //countdown timer
         mTextViewCountDown = (TextView) findViewById(R.id.text_view_countdown);
-        mButtonStartPause = (Button) findViewById(R.id.button_start_pause);
-        mButtonReset = (Button) findViewById(R.id.button_reset);
-
-//        mButtonStartPause.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(mTimerRunning)
-//                    pauseTimer();
-//                else
-//                    startTimer();
-//            }
-//        });
-//
-//        mButtonReset.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                resetTimer();
-//            }
-//        });
-
-       // updateCountDownText();
+        mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
+        mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);
+//        try {
+//            mButtonStartPause2.setVisibility(View.INVISIBLE);
+//        }catch (NullPointerException e) {}
+        mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
     }
 
@@ -459,9 +446,11 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //TODO: buttons reset when you go to third page since the references are null
     public void startTimer(final View view){
-        mButtonStartPause = (Button) findViewById(R.id.button_start_pause);
-        mButtonReset = (Button) findViewById(R.id.button_reset);
+        mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
+        mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);
+        mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
         final View view1 = view;
         try {
@@ -476,7 +465,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onFinish() {
                     mTimerRunning = false;
-                    mButtonStartPause.setText("Start");
+                    //mButtonStartPause.setText("Start");
                     mButtonStartPause.setVisibility(View.INVISIBLE);
                     mButtonReset.setVisibility(View.VISIBLE);
                 }
@@ -484,28 +473,33 @@ public class MainActivity extends AppCompatActivity {
         }catch (NullPointerException e){}
 
         mTimerRunning = true;
-        mButtonStartPause.setText("Pause");
+        //mButtonStartPause.setText("Pause");
         mButtonReset.setVisibility(View.INVISIBLE);
+        mButtonStartPause.setVisibility(View.INVISIBLE);
+        mButtonStartPause2.setVisibility(View.VISIBLE);
     }
 
     public void pauseTimer(View view){
-        mButtonStartPause = (Button) findViewById(R.id.button_start_pause);
-        mButtonReset = (Button) findViewById(R.id.button_reset);
+        mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
+        mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
         mCountDownTimer.cancel();
         mTimerRunning = false;
-        mButtonStartPause.setText("Start");
+        //mButtonStartPause.setText("Start");
+        mButtonStartPause.setVisibility(View.VISIBLE);
+        mButtonStartPause2.setVisibility(View.INVISIBLE);
         mButtonReset.setVisibility(View.VISIBLE);
     }
 
     public void resetTimer(View view){
-        mButtonStartPause = (Button) findViewById(R.id.button_start_pause);
-        mButtonReset = (Button) findViewById(R.id.button_reset);
+        mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
+        mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText(view);
         mButtonReset.setVisibility(View.INVISIBLE);
         mButtonStartPause.setVisibility(View.VISIBLE);
+        mButtonStartPause2.setVisibility(View.INVISIBLE);
     }
 
     public void updateCountDownText(View view){
@@ -515,9 +509,9 @@ public class MainActivity extends AppCompatActivity {
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
 
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-try {
-    mTextViewCountDown.setText(timeLeftFormatted);
-}catch (NullPointerException e) {}
+        try {
+            mTextViewCountDown.setText(timeLeftFormatted);
+        }catch (NullPointerException e) {}
     }
 
     public void choose_start_pause(View view){
