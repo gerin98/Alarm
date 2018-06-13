@@ -8,11 +8,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
@@ -27,10 +27,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
 
 //ToDo illegal state exception: not allowed to start service intent when app is closed
 
@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     MediaPlayer timer_song;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,6 +229,14 @@ public class MainActivity extends AppCompatActivity {
         mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
         timer_song = MediaPlayer.create(this, preferences.getInt("tune",0));
+
+
+
+        //ProgressBar progressBar = (ProgressBar) findViewById(R.id.cpb);
+//        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 500); // see this max value coming back here, we animate towards that value
+//        animation.setDuration(5000); // in milliseconds
+//        animation.setInterpolator(new DecelerateInterpolator());
+//        animation.start();
 
     }
 

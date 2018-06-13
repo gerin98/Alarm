@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -36,39 +37,47 @@
         <!--android:onClick="resetTimer"-->
         <!--android:layout_toRightOf="@+id/button_start_pause" />-->
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/button_start_pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="86dp"
-        android:clickable="true"
-        android:onClick="choose_start_pause"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        android:layout_alignParentStart="true">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/button_reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button_start_pause"
-        android:layout_toEndOf="@+id/text_view_countdown"
-        android:clickable="true"
-        android:onClick="resetTimer"
-        android:visibility="invisible"
-        app:srcCompat="@android:drawable/ic_menu_rotate"
-        android:layout_toRightOf="@+id/text_view_countdown" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_start_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:onClick="choose_start_pause"
+            app:srcCompat="@android:drawable/ic_media_play" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/button_start_pause2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button_start_pause"
-        android:layout_centerHorizontal="true"
-        android:clickable="true"
-        android:onClick="pauseTimer"
-        android:visibility="invisible"
-        app:srcCompat="@android:drawable/ic_media_pause" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="88dp"
+            android:clickable="true"
+            android:onClick="resetTimer"
+            android:visibility="invisible"
+            app:srcCompat="@android:drawable/ic_menu_rotate"
+            tools:ignore="NotSibling"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="88dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_start_pause2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:onClick="pauseTimer"
+            android:visibility="invisible"
+            app:srcCompat="@android:drawable/ic_media_pause" />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
