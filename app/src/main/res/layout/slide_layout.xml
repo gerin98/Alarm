@@ -11,32 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="00:00"
+        android:text="01:00"
         android:textColor="#FFF"
         android:textSize="60sp"
         android:onClick="timer_setup"/>
 
-    <!--<Button-->
-        <!--android:id="@+id/button_start_pause"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/text_view_countdown"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:onClick="choose_start_pause"-->
-        <!--android:text="start" />-->
-
-    <!--<Button-->
-        <!--android:id="@+id/button_reset"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/text_view_countdown"-->
-        <!--android:layout_marginStart="11dp"-->
-        <!--android:layout_toEndOf="@+id/button_start_pause"-->
-        <!--android:text="reset"-->
-        <!--android:visibility="invisible"-->
-        <!--android:layout_marginLeft="11dp"-->
-        <!--android:onClick="resetTimer"-->
-        <!--android:layout_toRightOf="@+id/button_start_pause" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -51,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:clickable="true"
-            android:onClick="choose_start_pause"
+            android:onClick="startTimer"
             app:srcCompat="@android:drawable/ic_media_play" />
 
         <android.support.design.widget.FloatingActionButton

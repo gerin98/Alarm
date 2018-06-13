@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout mDotLayout;
 
     //countdown timer
-    private static final long START_TIME_IN_MILLIS = 60000; //1 minute
+    private static long START_TIME_IN_MILLIS = 60000; //1 minute
     private TextView mTextViewCountDown;
     private FloatingActionButton mButtonStartPause;
     private FloatingActionButton mButtonReset;
@@ -374,7 +375,6 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt("snooze", prefValue);
             editor.apply();
 
-            //one minute snooze time
             snoozeTime += prefValue*60*1000;    //minutes*60seconds*1000milliseconds
         }
         alarmManager.set(AlarmManager.RTC_WAKEUP, snoozeTime, pendingIntent);
@@ -456,6 +456,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
+                    updateCountDownText_done(view1);
                     mTimerRunning = false;
                     //mButtonStartPause.setText("Start");
                     mButtonStartPause.setVisibility(View.INVISIBLE);
@@ -489,12 +490,16 @@ public class MainActivity extends AppCompatActivity {
         mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
         mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+//        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
         if(timer_song != null) {
             timer_song.stop();
             timer_song.reset();
             timer_song = null;
         }
+
+        SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
+        timer_song = MediaPlayer.create(this, preferences.getInt("tune",0));
+
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText(view);
         mButtonReset.setVisibility(View.INVISIBLE);
@@ -514,6 +519,18 @@ public class MainActivity extends AppCompatActivity {
         }catch (NullPointerException e) {}
     }
 
+    public void updateCountDownText_done(View view){
+        mTextViewCountDown = (TextView) findViewById(R.id.text_view_countdown);
+
+        int minutes = 0;
+        int seconds = 0;
+
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        try {
+            mTextViewCountDown.setText(timeLeftFormatted);
+        }catch (NullPointerException e) {}
+    }
+
     public void choose_start_pause(View view){
         if(mTimerRunning)
             pauseTimer(view);
@@ -522,33 +539,89 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void timer_setup(View view){
+
+        final View view1 = view;
+
         final AlertDialog.Builder d = new AlertDialog.Builder(context);
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.number_picker_dialog, null);
         d.setTitle("Set Timer");
-//        d.setMessage("Message");
         d.setView(dialogView);
-        final NumberPicker numberPicker = (NumberPicker) dialogView.findViewById(R.id.dialog_number_picker);
-        numberPicker.setMaxValue(50);
-        numberPicker.setMinValue(1);
-        numberPicker.setWrapSelectorWheel(false);
-//        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-//            @Override
-//            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-//                Log.d(TAG, "onValueChange: ");
-//            }
-//        });
-//        d.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                Log.d(TAG, "onClick: " + numberPicker.getValue());
-//            }
-//        });
-//        d.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//            }
-//        });
+
+        final NumberPicker numberPicker_min = (NumberPicker) dialogView.findViewById(R.id.dialog_number_picker_min);
+        numberPicker_min.setMaxValue(59);
+        numberPicker_min.setMinValue(0);
+        numberPicker_min.setWrapSelectorWheel(true);
+
+        final NumberPicker numberPicker_sec = (NumberPicker) dialogView.findViewById(R.id.dialog_number_picker_sec);
+        numberPicker_sec.setMaxValue(59);
+        numberPicker_sec.setMinValue(0);
+        numberPicker_sec.setWrapSelectorWheel(true);
+        numberPicker_sec.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format(int i) {
+                return String.format("%02d", i);
+            }
+        });
+
+        SharedPreferences preferences = getSharedPreferences("timer_length", Context.MODE_PRIVATE);
+        int prefMin = preferences.getInt("timer_min", 0);
+        int prefSec = preferences.getInt("timer_sec", 0);
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("timer_min", 0);
+        editor.putInt("timer_sec", 0);
+        editor.apply();
+
+        numberPicker_min.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                editor.putInt("timer_min", i1);
+                editor.apply();
+            }
+        });
+
+        numberPicker_sec.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                editor.putInt("timer_sec", i1);
+                editor.apply();
+            }
+        });
+
+        d.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            SharedPreferences preferences_done = getSharedPreferences("timer_length", Context.MODE_PRIVATE);
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                int setMin = preferences_done.getInt("timer_min", 0);
+                int setSec = preferences_done.getInt("timer_sec", 0);
+
+                START_TIME_IN_MILLIS = ( (setMin * 60) + setSec )* 1000;
+                Log.e("timer_min: ",String.valueOf(setMin));
+                Log.e("timer_sec: ",String.valueOf(setSec));
+                Log.e("timer_set: ",String.valueOf(START_TIME_IN_MILLIS));
+
+                mTimeLeftInMillis = START_TIME_IN_MILLIS;
+
+                updateCountDownText(view1);
+                if(mCountDownTimer != null)
+                    mCountDownTimer.cancel();
+
+                mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
+                mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);
+                mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
+
+                mButtonStartPause.setVisibility(View.VISIBLE);
+                mButtonStartPause2.setVisibility(View.INVISIBLE);
+                mButtonReset.setVisibility(View.INVISIBLE);
+
+            }
+        });
+        d.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
         AlertDialog alertDialog = d.create();
         alertDialog.show();
     }
