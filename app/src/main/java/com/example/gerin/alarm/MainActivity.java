@@ -170,16 +170,7 @@ public class MainActivity extends AppCompatActivity {
                                 TextView tTime = (TextView) findViewById(R.id.time);
                                 TextView tGreeting = (TextView) findViewById(R.id.greeting);
                                 TextView tampm = (TextView) findViewById(R.id.ampm);
-//                                LocalTime greetingtime1 = LocalTime.parse("12:00");
-//                                LocalTime greetingtime2 = LocalTime.parse("17:00");
                                 long date = System.currentTimeMillis();
-
-
-                                ////////////
-//                                Calendar cal = Calendar.getInstance();
-//                                cal.setTime();
-//                                int hours = cal.get(Calendar.HOUR_OF_DAY);
-                                ////////////
 
                                 SimpleDateFormat sdfDate = new SimpleDateFormat("MMM dd yyyy ");
                                 SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
@@ -188,8 +179,6 @@ public class MainActivity extends AppCompatActivity {
                                 String dateString = sdfDate.format(date);
                                 String timeString = sdfTime.format(date);
                                 String greetingTimeString = sdfGreetingTime.format(date);
-
-//                                LocalTime currTime = LocalTime.parse(greetingTimeString);
 
                                 //this is in a try block since the reference returns null when on
                                 //different pages
@@ -223,20 +212,9 @@ public class MainActivity extends AppCompatActivity {
         mTextViewCountDown = (TextView) findViewById(R.id.text_view_countdown);
         mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
         mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);
-//        try {
-//            mButtonStartPause2.setVisibility(View.INVISIBLE);
-//        }catch (NullPointerException e) {}
         mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
         timer_song = MediaPlayer.create(this, preferences.getInt("tune",0));
-
-
-
-        //ProgressBar progressBar = (ProgressBar) findViewById(R.id.cpb);
-//        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 500); // see this max value coming back here, we animate towards that value
-//        animation.setDuration(5000); // in milliseconds
-//        animation.setInterpolator(new DecelerateInterpolator());
-//        animation.start();
 
     }
 
