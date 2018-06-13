@@ -5,6 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <TextView
+        android:id="@+id/alarmset_textView"
+        android:layout_width="167dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="46dp"
+        android:text="Timer"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="30dp" />
+
+
     <TextView
         android:id="@+id/text_view_countdown"
         android:layout_width="wrap_content"
@@ -57,6 +75,7 @@
             app:srcCompat="@android:drawable/ic_media_pause" />
 
     </RelativeLayout>
+
 
 
 </RelativeLayout>
