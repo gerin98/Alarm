@@ -13,7 +13,8 @@
         android:layout_centerVertical="true"
         android:text="00:00"
         android:textColor="#FFF"
-        android:textSize="60sp" />
+        android:textSize="60sp"
+        android:onClick="timer_setup"/>
 
     <!--<Button-->
         <!--android:id="@+id/button_start_pause"-->
@@ -41,7 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="93dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/button_start_pause"

@@ -12,16 +12,19 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -516,5 +519,37 @@ public class MainActivity extends AppCompatActivity {
             pauseTimer(view);
         else
             startTimer(view);
+    }
+
+    public void timer_setup(View view){
+        final AlertDialog.Builder d = new AlertDialog.Builder(context);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.number_picker_dialog, null);
+        d.setTitle("Set Timer");
+//        d.setMessage("Message");
+        d.setView(dialogView);
+        final NumberPicker numberPicker = (NumberPicker) dialogView.findViewById(R.id.dialog_number_picker);
+        numberPicker.setMaxValue(50);
+        numberPicker.setMinValue(1);
+        numberPicker.setWrapSelectorWheel(false);
+//        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//            @Override
+//            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+//                Log.d(TAG, "onValueChange: ");
+//            }
+//        });
+//        d.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                Log.d(TAG, "onClick: " + numberPicker.getValue());
+//            }
+//        });
+//        d.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//            }
+//        });
+        AlertDialog alertDialog = d.create();
+        alertDialog.show();
     }
 }
