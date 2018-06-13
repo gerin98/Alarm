@@ -37,16 +37,14 @@
             android:id="@+id/button_reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="88dp"
+            android:layout_toEndOf="@+id/button_start_pause"
+            android:layout_marginLeft="30dp"
             android:clickable="true"
             android:onClick="resetTimer"
             android:visibility="invisible"
             app:srcCompat="@android:drawable/ic_menu_rotate"
-            tools:ignore="NotSibling"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="88dp" />
+            tools:ignore="NotSibling" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/button_start_pause2"
