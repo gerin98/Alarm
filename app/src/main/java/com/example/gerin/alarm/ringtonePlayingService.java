@@ -1,20 +1,13 @@
 package com.example.gerin.alarm;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.Toast;
 
 public class ringtonePlayingService extends Service {
 
@@ -42,13 +35,13 @@ public class ringtonePlayingService extends Service {
 //        }
 //
 //
-//         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,"my_channel")
+//         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
 //                .setSmallIcon(R.mipmap.ic_launcher2)
-//                .setContentTitle("Music Player")
-//                .setContentText("Playing \"So Long - Massari\" ")
+//                .setContentTitle("Alarm")
+//                .setContentText("Ringing")
 //                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 //                .setAutoCancel(false);
-
+//
 //        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //        notificationManager.notify(1, mBuilder.build());
 

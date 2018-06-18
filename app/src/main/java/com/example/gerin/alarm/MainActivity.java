@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     MediaPlayer timer_song;
+    MediaPlayer my_new_timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,8 +219,31 @@ public class MainActivity extends AppCompatActivity {
         mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);
         mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
-        timer_song = MediaPlayer.create(this, preferences.getInt("tune",0));
 
+        // set shared preferences again and put timesong in a try block in cases where preferences
+        // were not properly set before
+        preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
+        prefValue = preferences.getInt("tune", 0);
+        if(prefValue == 0){
+            editor.putInt("tune", R.raw.down_stream);
+            editor.apply();
+            Log.e("inside if", "default song set");
+        }
+        else{
+            editor.putInt("tune", prefValue);
+            editor.apply();
+            Log.e("inside else", "preferences song set");
+            //keep previous preference
+        }
+
+        int timer_tune = preferences.getInt("tune",R.raw.down_stream);
+        Log.e("preferences value", String.valueOf(timer_tune));
+        Log.e("resources value", String.valueOf(R.raw.down_stream));
+        try {
+            timer_song = MediaPlayer.create(this, timer_tune);
+        }catch (Exception e){
+            timer_song = MediaPlayer.create(this, R.raw.down_stream);
+        }
     }
 
     public void playSound(View view){
@@ -439,6 +463,9 @@ public class MainActivity extends AppCompatActivity {
     };
 
     //TODO: change alarm tune while timer is running
+    /*TODO: timer setup screen reverts back to original when moved to a new activity while timer is running
+    or timer_alarm is ringing*/
+    
     public void startTimer(final View view){
         mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
         mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);
@@ -498,7 +525,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
-        timer_song = MediaPlayer.create(this, preferences.getInt("tune",0));
+
+        try {
+            timer_song = MediaPlayer.create(this, preferences.getInt("tune", 0));
+        }catch (Exception e){
+            timer_song = MediaPlayer.create(this, R.raw.down_stream);
+        }
 
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText(view);
