@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     MediaPlayer timer_song;
-    MediaPlayer my_new_timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,6 +243,61 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             timer_song = MediaPlayer.create(this, R.raw.down_stream);
         }
+
+        //timer buttons
+        mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
+        mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);
+        mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
+
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
+        mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);
+        mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
+
+        Log.e("inside resume method", "resetting button visibility");
+
+
+        if(timer_song.isPlaying()){
+            Log.e("inside resume method", "music is playing from timer");
+        }
+
+//        setContentView(R.layout.activity_main);
+
+//        mButtonStartPause.setVisibility(View.INVISIBLE);
+//        mButtonStartPause2.setVisibility(View.INVISIBLE);
+//        mButtonReset.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        Log.e("inside restart method", "resetting button visibility");
+//        mButtonStartPause.setVisibility(View.INVISIBLE);
+//        mButtonStartPause2.setVisibility(View.INVISIBLE);
+//        mButtonReset.setVisibility(View.VISIBLE);
     }
 
     public void playSound(View view){
@@ -465,7 +519,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO: change alarm tune while timer is running
     /*TODO: timer setup screen reverts back to original when moved to a new activity while timer is running
     or timer_alarm is ringing*/
-    
+
     public void startTimer(final View view){
         mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
         mButtonStartPause2 = (FloatingActionButton) findViewById(R.id.button_start_pause2);

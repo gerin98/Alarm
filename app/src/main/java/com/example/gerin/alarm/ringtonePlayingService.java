@@ -1,5 +1,7 @@
 package com.example.gerin.alarm;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +10,8 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+
+import java.text.SimpleDateFormat;
 
 public class ringtonePlayingService extends Service {
 
@@ -63,6 +67,23 @@ public class ringtonePlayingService extends Service {
         //notificationManager.notify(0, notification);
 
         //startForeground(1337, mBuilder.build());
+
+        /* create a notification */
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
+        String timeString = "Alarm set at " + sdfTime.format(date);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
+        Notification.Builder builder = new Notification.Builder(this);
+
+        builder.setSmallIcon(R.drawable.alarm_clock_time);
+        builder.setContentText(timeString);
+        builder.setContentTitle("Turn off alarm");
+        builder.setAutoCancel(true);
+        builder.setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE);
+
+        Notification notification = builder.build();
+        notificationManager.notify(1,notification);
 
         Log.e("Local Service", "Received start id " + startId + " : " + intent);
 
