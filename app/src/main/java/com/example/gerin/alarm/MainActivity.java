@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     Calendar calendar;
     FloatingActionButton alarmOn;
     Button alarmOff;
+    Button alarmSnooze;
     PendingIntent pendingIntent;
     Intent alarmReceiverIntent;
     boolean alarmActive = false;
@@ -110,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         //initialize alarm ON/OFF buttons
         alarmOn = (FloatingActionButton) findViewById(R.id.alarm_button);
         alarmOff = (Button) findViewById(R.id.off_button);
+        alarmSnooze = (Button) findViewById(R.id.snooze_button);
 
         //set slide view pager
         mSlideViewPager = (ViewPager) findViewById(R.id.slidePager);
@@ -233,6 +235,12 @@ public class MainActivity extends AppCompatActivity {
                                 //some code
                                 if(mService.showButtons()){
                                     Log.e("thread 2","alarm works");
+                                    try {
+                                        alarmOff = (Button) findViewById(R.id.off_button);
+                                        alarmSnooze = (Button) findViewById(R.id.snooze_button);
+                                        alarmOff.setVisibility(View.VISIBLE);
+                                        alarmSnooze.setVisibility(View.VISIBLE);
+                                    }catch (Exception e) {}
                                 }
                             }
                         });

@@ -75,6 +75,7 @@
         android:fontFamily="sans-serif"
         android:onClick="alarmToggleOff"
         android:text="Turn off alarm"
+        android:visibility="invisible"
         android:layout_toRightOf="@+id/alarmset_textView" />
 
     <android.support.design.widget.FloatingActionButton
@@ -101,6 +102,7 @@
         android:fontFamily="sans-serif"
         android:onClick="alarmSnooze"
         android:text="snooze"
+        android:visibility="invisible"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="46dp" />
 
