@@ -2,6 +2,7 @@ package com.example.gerin.alarm;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -81,6 +82,10 @@ public class ringtonePlayingService extends Service {
         builder.setContentTitle("Turn off alarm");
         builder.setAutoCancel(true);
         builder.setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE);
+
+        Intent targetIntent = new Intent(this, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, targetIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
 
         Notification notification = builder.build();
         notificationManager.notify(1,notification);

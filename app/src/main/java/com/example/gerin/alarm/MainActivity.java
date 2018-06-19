@@ -35,7 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-
+//TODO: stop alarm button doesnt work when returning to main activity from another activity (pending intent becomes null)
 //ToDo illegal state exception: not allowed to start service intent when app is closed
 
 public class MainActivity extends AppCompatActivity {
@@ -330,20 +330,15 @@ public class MainActivity extends AppCompatActivity {
         alarm_switch = (Switch) findViewById(R.id.alarm_switch);
 
         alarm_relativeLayout = (RelativeLayout) findViewById(R.id.alarm_relativeLayout);
-        //setting calendar instance with hour and minute
-//        calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
-//        calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
-        // TODO Auto-generated method stub
+
         Calendar mcurrentTime = Calendar.getInstance();
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
-        //final boolean[] alarmActive = {false};
-        //final int [] set_time = new int[2];
+
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                //eReminderTime.setText( selectedHour + ":" + selectedMinute);
                 if(timePicker.isShown()) {  //???
                     calendar.set(Calendar.HOUR_OF_DAY, selectedHour);
                     calendar.set(Calendar.MINUTE, selectedMinute);
@@ -379,27 +374,9 @@ public class MainActivity extends AppCompatActivity {
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
 
-//        System.out.println(String.valueOf(set_time[0]) + ":" + String.valueOf(set_time[1]));
-//        calendar.set(Calendar.HOUR_OF_DAY, hour);
-//        calendar.set(Calendar.MINUTE, minute);
         Log.e("Set the calendar", "pending intent comes next");
         if(alarmActive)
             Log.e("inside if statement", "alarmActive: true");
-
-
-
-        //have to check if time set before sending pending intent
-        //if(alarmActive){
-            //create a pending intent
-//            pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//            //set the alarm manager
-//            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-        //}
-
-
-        //turn off the alarm
-        //alarmManager.cancel(pendingIntent);
 
     }
 
