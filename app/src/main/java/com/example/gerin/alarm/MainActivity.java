@@ -469,6 +469,11 @@ public class MainActivity extends AppCompatActivity {
 
         alarm_switch.setChecked(false);
 
+        alarmOff = (Button) findViewById(R.id.off_button);
+        alarmSnooze = (Button) findViewById(R.id.snooze_button);
+        alarmOff.setVisibility(View.INVISIBLE);
+        alarmSnooze.setVisibility(View.INVISIBLE);
+
     }
 
     public void alarmSnooze(View view){
