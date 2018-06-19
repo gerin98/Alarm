@@ -56,16 +56,33 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
+    <Button
+        android:id="@+id/off_button"
+        android:layout_width="138dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="38dp"
+        android:background="@drawable/oval_shape"
+        android:fontFamily="sans-serif"
+        android:onClick="alarmToggleOff"
+        android:text="Turn off alarm"
+        android:visibility="invisible" />
 
+    <Button
+        android:id="@+id/snooze_button"
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/off_button"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/oval_shape"
+        android:fontFamily="sans-serif"
+        android:onClick="alarmSnooze"
+        android:text="snooze"
+        android:visibility="invisible"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="40dp" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/greeting"-->
-        <!--android:layout_width="318dp"-->
-        <!--android:layout_height="164dp"-->
-        <!--android:layout_below="@+id/date"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/space"-->
-        <!--android:textColor="@android:color/background_light"-->
-        <!--android:textSize="30sp" />-->
 </RelativeLayout>

@@ -65,18 +65,7 @@
     </RelativeLayout>
 
 
-    <Button
-        android:id="@+id/off_button"
-        android:layout_width="138dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/snooze_button"
-        android:layout_toEndOf="@+id/alarmset_textView"
-        android:background="@drawable/oval_shape"
-        android:fontFamily="sans-serif"
-        android:onClick="alarmToggleOff"
-        android:text="Turn off alarm"
-        android:visibility="invisible"
-        android:layout_toRightOf="@+id/alarmset_textView" />
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/alarm_button"
@@ -90,21 +79,7 @@
         app:srcCompat="@drawable/ic_add_black"
         android:layout_alignRight="@+id/alarm_relativeLayout" />
 
-    <Button
-        android:id="@+id/snooze_button"
-        android:layout_width="137dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="97dp"
-        android:layout_marginStart="46dp"
-        android:background="@drawable/oval_shape"
-        android:fontFamily="sans-serif"
-        android:onClick="alarmSnooze"
-        android:text="snooze"
-        android:visibility="invisible"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="46dp" />
+
 
 
 </RelativeLayout>
