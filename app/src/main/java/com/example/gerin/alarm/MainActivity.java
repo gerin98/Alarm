@@ -3,14 +3,17 @@ package com.example.gerin.alarm;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -75,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     MediaPlayer timer_song;
+
+    //binder
+    ringtonePlayingService mService;
+    boolean mBound = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,6 +219,30 @@ public class MainActivity extends AppCompatActivity {
         t.start();
 
 
+        /******************************************************************************************/
+        //new thread to show buttons
+        Thread t2 = new Thread(){
+            @Override
+            public void run(){
+                try{
+                    while(!isInterrupted()){
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //some code
+                                if(mService.showButtons()){
+                                    Log.e("thread 2","alarm works");
+                                }
+                            }
+                        });
+                    }
+                }catch (InterruptedException e){}
+            }
+        };
+        t2.start();
+        /******************************************************************************************/
+
         //countdown timer
         mTextViewCountDown = (TextView) findViewById(R.id.text_view_countdown);
         mButtonStartPause = (FloatingActionButton) findViewById(R.id.button_start_pause);
@@ -250,6 +281,22 @@ public class MainActivity extends AppCompatActivity {
         mButtonReset = (FloatingActionButton) findViewById(R.id.button_reset);
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Bind to ringtonePlayingService
+        Intent binder_intent = new Intent(this, ringtonePlayingService.class);
+        bindService(binder_intent, mConnection, Context.BIND_AUTO_CREATE);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unbindService(mConnection);
+        mBound = false;
     }
 
     @Override
@@ -299,6 +346,25 @@ public class MainActivity extends AppCompatActivity {
 //        mButtonStartPause2.setVisibility(View.INVISIBLE);
 //        mButtonReset.setVisibility(View.VISIBLE);
     }
+
+    /** Defines callbacks for service binding, passed to bindService() */
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            ringtonePlayingService.LocalBinder binder = (ringtonePlayingService.LocalBinder) service;
+            mService = binder.getService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
+
 
     public void playSound(View view){
         SharedPreferences preferences = getSharedPreferences("alarm_tune", Context.MODE_PRIVATE);
