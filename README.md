@@ -16,9 +16,13 @@
 
 <img src="alarm_screenshots/Screenshot_1529504313.png" width="156"> <img src="alarm_screenshots/Screenshot_1529505118.png" width="156">
 
-- shows current time
+- shows current time and date
 - shows greeting
 - shows snooze/stop alarm buttons if alarm is currently ringing
+
+#### Alarm Screen ####
+
+#### Timer Screen ####
 
 ## Android Target Version ##
 
