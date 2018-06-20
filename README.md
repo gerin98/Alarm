@@ -14,10 +14,11 @@
 
 #### Main Screen ####
 
-<img src="alarm_screenshots/Screenshot_1529504313.png" width="156">
+<img src="alarm_screenshots/Screenshot_1529504313.png" width="156"> <img src="alarm_screenshots/Screenshot_1529505118.png" width="156">
 
 - shows current time
 - shows greeting
+- shows snooze/stop alarm buttons if alarm is currently ringing
 
 ## Android Target Version ##
 
