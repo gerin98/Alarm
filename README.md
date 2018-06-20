@@ -12,6 +12,13 @@
 - Notifications sent when alarm goes off
 - Adjust snooze length
 
+#### Main Screen ####
+
+<img src="alarm_screenshots/Screenshot_1529504313.png" width="156">
+
+- shows current time
+- shows greeting
+
 ## Android Target Version ##
 
 **Alarm** is currently built to work with Android API Level 27. However **Alarm's** minimum SDK support is Android API Level 16.
