@@ -22,6 +22,11 @@
 
 #### Alarm Screen ####
 
+<img src="alarm_screenshots/Screenshot_1529510058.png" width="156"> <img src="alarm_screenshots/Screenshot_1529510067.png" width="156">
+
+- add alarms
+- view added alarms in the "Set Alarms" menu
+
 #### Timer Screen ####
 
 <img src="alarm_screenshots/Screenshot_1529510046.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504323.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504352.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504347.png" width="156">
