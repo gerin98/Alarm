@@ -59,46 +59,34 @@
 
 ## Music Credits ##
 
-**Down Stream** - 
+**Down Stream** - www.melodyloops.com
 
-www.melodyloops.com
+**New Dawn** - www.bensound.com
 
-**New Dawn** - 
-
-www.bensound.com
-
-**River Fire** - 
-
-River Fire Kevin MacLeod (incompetech.com)
+**River Fire** - River Fire Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
 http://creativecommons.org/licenses/by/3.0/
 
-**Silver Flame** - 
-
-Silver Flame Kevin MacLeod (incompetech.com)
+**Silver Flame** - Silver Flame Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
 http://creativecommons.org/licenses/by/3.0/
 
-**Soaring** - 
-
-Soaring Kevin MacLeod (incompetech.com)
+**Soaring** - Soaring Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
 http://creativecommons.org/licenses/by/3.0/
 
-**Fireflies and Stardust** - 
-
-Fireflies and Stardust Kevin MacLeod (incompetech.com)
+**Fireflies and Stardust** - Fireflies and Stardust Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
 http://creativecommons.org/licenses/by/3.0/
 
-**Dreamer** - 
-
-Dreamer Kevin MacLeod (incompetech.com)
+**Dreamer** - Dreamer Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
 http://creativecommons.org/licenses/by/3.0/
 
-**Bittersweet** - 
-
-Bittersweet Kevin MacLeod (incompetech.com)
+**Bittersweet** - Bittersweet Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
 http://creativecommons.org/licenses/by/3.0/
+
+## Image Credits ##
+
+**Background** - https://drive.google.com/file/d/1OA7LOz0Ss4_jaDKBDpS6SVjiMmweug77/view
