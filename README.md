@@ -51,7 +51,7 @@
 - send notifications for timer
 - on/off switch functionality for "Set Alarms" page
 
-## Known Errors ##
+## Known Issues ##
 
 - can currently set only one alarm
 - alarm is cancelled when app is force closed
