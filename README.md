@@ -24,7 +24,7 @@
 
 #### Timer Screen ####
 
-<img src="alarm_screenshots/Screenshot_1529504323.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504347.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504352.png" width="156">
+<img src="alarm_screenshots/Screenshot_1529510046.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504323.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504352.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504347.png" width="156">
 
 - tap on the time to adjust the timer length
 - when timer is stopped, play button is displayed
