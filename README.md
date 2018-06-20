@@ -24,6 +24,14 @@
 
 #### Timer Screen ####
 
+<img src="alarm_screenshots/Screenshot_1529504323.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504347.png" width="156"> <img src="alarm_screenshots/Screenshot_1529504352.png" width="156">
+
+- tap on the time to adjust the timer length
+- when timer is stopped, play button is displayed
+- when timer is running, pause button is displayed
+- when timer is paused, play button and reset button are displayed
+- when timer is done, reset button is displayed
+
 ## Android Target Version ##
 
 **Alarm** is currently built to work with Android API Level 27. However **Alarm's** minimum SDK support is Android API Level 16.
@@ -36,6 +44,7 @@
 
 - adjust notification settings
 - send notifications for timer
+- on/off switch functionality for "Set Alarms" page
 
 ## Known Errors ##
 
