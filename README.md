@@ -2,12 +2,15 @@
 
 ## About Alarm ##
 
+**Alarm** is a intuitive clock application featuring soothing nature sounds. Easily set an alarm, timer or simply check the time with **Alarm's** beautiful and easy to use design.
+
 ## Features ##
 
 - Simple Material Design Clock Application with an Alarm clock and Timer
 - Intuitive controls to start, stop, reset timer and start, stop, snooze alarm
 - 8 different alarm sounds to choose from
 - Notifications sent when alarm goes off
+- Adjust snooze length
 
 ## Android Target Version ##
 
@@ -16,6 +19,11 @@
 ## Build Configuration ##
 
 **Alarm** was built with CompileSDKVersion 27
+
+## Coming Soon ##
+
+- adjust notification settings
+- send notifications for timer
 
 ## Known Errors ##
 
