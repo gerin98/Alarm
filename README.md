@@ -50,6 +50,7 @@
 - adjust notification settings
 - send notifications for timer
 - on/off switch functionality for "Set Alarms" page
+- turn notifications on/off
 
 ## Known Issues ##
 
